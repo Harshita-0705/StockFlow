@@ -352,7 +352,49 @@
   </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">
+  <div id="app-loader" style="
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:center; height:100vh; background:#f5f6fa; gap:14px;
+  ">
+    <div style="
+      width:52px; height:52px; background:#2563eb; border-radius:14px;
+      display:flex; align-items:center; justify-content:center; font-size:26px;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    ">📦</div>
+    <div style="font-size:22px; font-weight:700; color:#0f172a; letter-spacing:-0.5px;">StockFlow</div>
+    <div style="font-size:13px; color:#64748b;">Inventory Management</div>
+    <div style="
+      width:36px; height:36px; margin-top:8px;
+      border:3px solid #dbeafe; border-top-color:#2563eb;
+      border-radius:50%; animation:spin .8s linear infinite;
+    "></div>
+  </div>
+</div>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* Hide Babel's own "A" indicator */
+  script[type="text/babel"] { display: none !important; }
+</style>
+
+<script>
+  // Remove loader once React has rendered
+  document.addEventListener('DOMContentLoaded', function() {
+    var observer = new MutationObserver(function() {
+      var loader = document.getElementById('app-loader');
+      var root = document.getElementById('root');
+      if (loader && root && root.children.length > 1) {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 0.3s ease';
+        setTimeout(function() { loader.remove(); }, 300);
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.getElementById('root'), { childList: true, subtree: true });
+  });
+</script>
+
 <script type="text/babel" src="/static/js/app.js"></script>
 </body>
 </html>
