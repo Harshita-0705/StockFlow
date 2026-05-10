@@ -77,4 +77,10 @@ if __name__ == "__main__":
         # Uncomment the lines below if you want to seed demo data
         # from backend.utils.seeder import seed_demo_data
         # seed_demo_data()
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    port = int(os.getenv("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
+else:
+    # Used by gunicorn in production: "gunicorn app:app"
+    app = create_app()
+    with app.app_context():
+        db.create_all()
