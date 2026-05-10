@@ -277,43 +277,7 @@ Database (SQLite)
 - [ ] Add input validation & sanitization
 - [ ] Set up database backups
 
-## 📝 Environment Variables
 
-Create a `.env` file (optional):
-```env
-DATABASE_URL=sqlite:///grocery_erp.db
-SECRET_KEY=your-secret-key-here
-FLASK_ENV=development
-FLASK_DEBUG=true
-```
-
-## 🧪 Testing
-
-```bash
-# Run tests (if implemented)
-pytest
-
-# Check code coverage
-pytest --cov=backend
-```
-
-## 📦 Deployment
-
-### Using Gunicorn (Production)
-```bash
-pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:8000 app:app
-```
-
-### Using Docker
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
-```
 
 ## 🤝 Contributing
 
@@ -334,17 +298,4 @@ This project is open source and available under the [MIT License](LICENSE).
 **Harshita**
 - GitHub: [@Harshita-0705](https://github.com/Harshita-0705)
 
-## 🙏 Acknowledgments
 
-- Flask documentation
-- React documentation
-- Chart.js for beautiful charts
-- SQLAlchemy for powerful ORM
-
-## 📞 Support
-
-If you have any questions or need help, please open an issue on GitHub.
-
----
-
-**Made with ❤️ by Harshita**
